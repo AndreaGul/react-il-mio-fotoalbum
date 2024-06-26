@@ -23,7 +23,7 @@ model photo {
   categories  Category[]
   users       User?      @relation(fields: [userId], references: [id])
   userId      Int?
-  createAt    DateTime   @default(now())
+  createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 }
 
@@ -31,7 +31,7 @@ model Category {
   id        Int      @id @default(autoincrement())
   name      String
   fotos     photo[]
-  createAt  DateTime @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 

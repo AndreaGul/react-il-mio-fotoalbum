@@ -1,6 +1,36 @@
-const store = (req,res)=>{
-    res.status(200).send('<h1>Rotta Store</h1><p>Questa rotta crea un nuovo elemento.</p>')
-}
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
+
+const errorHandler = require("../middlewares/errorHandler")
+
+const store = async (req,res)=>{
+    const {title,description,img,categories,userId}= req.body;
+
+    try{
+            const data = {
+            title,
+            description,
+            img,
+            visible: req.body.visible ? true : false,
+            categories:{
+                connect: categories.map(id=>({id:parseInt(id)}))
+            },
+            userId: parseInt(userId),
+        }
+
+        try{
+            const photo = await  prisma.photo.create({data});
+            res.status(200).send(photo);
+
+        }catch(err){
+            errorHandler(err,req,res);
+        }
+    }
+    catch(err){
+        errorHandler(err,req,res);
+    }
+  
+   }
 
 
 const show= (req,res)=>{
