@@ -39,8 +39,36 @@ const show= (req,res)=>{
     res.status(200).send('<h1>Rotta Show</h1><p>Questa rotta legge e restituisce un elemento.</p>')
 }
 
-const index = (req,res)=>{
-    res.status(200).send('<h1>Rotta Index</h1><p>Questa rotta legge e restituisce gli elementi.</p>')
+const index = async (req,res)=>{
+try{
+    const photos = await prisma.photo.findMany({
+        include: {
+            categories: {
+                select: {
+                    name: true
+                }
+           }
+            // ,
+            // user: {
+            //     select: {
+            //         name: true
+            //     }
+            // }
+            
+        }
+    });
+    if(photos.length ===0){
+        res.json(`Nessuna foto trovata`)
+    }else{
+        res.json({
+            photos
+        });
+    }
+  
+}catch(err){
+    errorHandler(err,req,res)
+}
+    
 }
 const update = (req,res)=>{
     res.status(200).send('<h1>Rotta Update</h1><p>Questa rotta aggiorna un elemento esistente.</p>')
