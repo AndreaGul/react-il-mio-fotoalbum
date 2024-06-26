@@ -100,8 +100,29 @@ try{
 }
     
 }
-const update = (req,res)=>{
-    res.status(200).send('<h1>Rotta Update</h1><p>Questa rotta aggiorna un elemento esistente.</p>')
+const update = async (req,res)=>{
+    try{
+        const {id}=req.params;
+
+        const photoRecived= req.body;
+
+        const photo = await prisma.photo.update({
+            where:{ id: parseInt(id, 10) },
+            data:{
+                title: photoRecived.title,
+                description: photoRecived.description,
+                visible: photoRecived.visible,
+                img: photoRecived.img,
+                // Per aggiornare categorie e relazioni assicurati che photoRecived.categories contenga i dati corretti
+                categories: {
+                    set: photoRecived.categories.map(categoryId => ({ id: categoryId }))
+                },
+            },
+        })
+        res.json(photo);
+    }catch(err){
+        errorHandler(err,req,res);
+    }
 }
 const destroy = (req,res)=>{
     res.status(200).send('<h1>Rotta Delete</h1><p>Questa rotta elimina un elemento.</p>')
