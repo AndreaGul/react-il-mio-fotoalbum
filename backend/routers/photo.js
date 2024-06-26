@@ -1,15 +1,15 @@
 const express = require("express");
 const router= express.Router();
+const {store,show,index,update,destroy}= require("../controllers/photo");
+const upload = require('../middlewares/upload');
 
-const {store,show,index,update,destroy}= require("../controllers/photo")
-
-router.post('/',store);
+router.post('/', upload.single('img') ,store);
 
 router.get('/:id',show)
 
 router.get('/',index);
 
-router.post('/:id',update)
+router.put('/:id',upload.single('img'),update)
 
 router.delete('/:id', destroy)
 
