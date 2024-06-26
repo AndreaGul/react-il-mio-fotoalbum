@@ -1,11 +1,13 @@
 Ciao ragazzi,
 ci hanno commissionato un lavoro : un fotografo vuole mostrare agli utenti le foto più belle che ha scattato e ci chiede di realizzare una webapp che permetta questo.
+
 Ha bisogno di un’area di amministrazione per gestire le foto, quindi
 vedere tutte quelle inserite (filtrabili)
 vedere i dettagli di una singola foto
 aggiungerne di nuove (con validazione)
 modificarle (con validazione)
 cancellarle
+ 
 Ovviamente queste operazioni può svolgerle solo lui, quindi l’accesso alle pagine deve essere protetto da autenticazione.
 Una foto contiene almeno le seguenti informazioni :
 titolo
