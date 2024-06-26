@@ -35,8 +35,38 @@ const store = async (req,res)=>{
    }
 
 
-const show= (req,res)=>{
-    res.status(200).send('<h1>Rotta Show</h1><p>Questa rotta legge e restituisce un elemento.</p>')
+const show= async (req,res)=>{
+    try{
+        const {id}=req.params;
+        const photo = await prisma.photo.findUnique({
+            where:{id: parseInt(id)},
+            include: {
+                categories: {
+                    select: {
+                        name: true
+                    }
+               }
+                // ,
+                // user: {
+                //     select: {
+                //         name: true
+                //     }
+                // }
+                
+            }
+        });
+        if(photo){
+            res.json({
+                photo
+            });
+        }else{
+            res.status( 404).send(`post con id ${id} non trovata.`);
+        }
+      
+    }catch(err){
+        errorHandler(err,req,res)
+    }
+        
 }
 
 const index = async (req,res)=>{
