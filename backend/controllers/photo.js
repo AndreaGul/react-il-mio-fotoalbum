@@ -163,7 +163,15 @@ const update = async (req, res) => {
 
   
 const destroy = async(req,res)=>{
-    
+    try{
+        const { id }= req.params;
+        await prisma.photo.delete({
+            where:{id:parseInt(id)},
+        });
+        res.json(`foto con id ${id} eliminato`)
+    }catch(err){
+        errorHandler(err,req,res);
+    }
 }
 
 
