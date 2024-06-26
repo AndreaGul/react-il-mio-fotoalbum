@@ -124,8 +124,16 @@ const update = async (req,res)=>{
         errorHandler(err,req,res);
     }
 }
-const destroy = (req,res)=>{
-    res.status(200).send('<h1>Rotta Delete</h1><p>Questa rotta elimina un elemento.</p>')
+const destroy = async(req,res)=>{
+    try{
+        const { id }= req.params;
+        await prisma.photo.delete({
+            where:{id:parseInt(id)},
+        });
+        res.json(`foto con id ${id} eliminato`)
+    }catch(err){
+        errorHandler(err,req,res);
+    }
 }
 
 
