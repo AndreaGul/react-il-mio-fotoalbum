@@ -1,6 +1,7 @@
 const express = require ("express");
 const app = express();
 const photoRouter = require("./routers/photo");
+const authRouter = require("./routers/auth");
 
 require("dotenv").config();
 const {PORT} = process.env;
@@ -10,6 +11,7 @@ app.use(express.static("public"));
 
 app.use(express.json());
 
+app.use('/auth', authRouter);
 app.use('/photos', photoRouter);
 
 app.listen(port, ()=>{
