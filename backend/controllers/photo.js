@@ -3,6 +3,7 @@ const prisma = new PrismaClient();
 
 const errorHandler = require("../middlewares/errorHandler")
 
+//store per salvare una foto
 const store = async (req,res)=>{
     const {title,description,img,categories,userId}= req.body;
 
@@ -29,6 +30,7 @@ const store = async (req,res)=>{
     catch(err){
         errorHandler(err,req,res);
     }
+
   
    }
 
