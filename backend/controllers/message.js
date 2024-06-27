@@ -31,9 +31,36 @@ const index = async (req,res)=>{
 }
 
 const show = async(req,res)=>{
-    try{const id =}
-}
+    try{const id = parseInt(req.params.id);
+        const message = await prisma.message.findUnique({
+            where:{id}
+        })
+        if(message){
+            res.json(message);
+        }
+        else{
+            throw new RestError(`Category con id ${id} non trovato.`, 404);
+        }
+    }catch(err)
+        {
+            errorHandler(err,req,res);
+        }
+    }
+
+    const destroy = async (req, res) => {
+
+        try{
+            const id = parseInt(req.params.id);
+            await prisma.message.delete({
+              where: { id },
+            });
+            res.json(`Messaggio con id ${id} eliminato con successo.`);
+        }catch(err){
+            errorHandler(err, req, res);
+        }
+    
+    }
 
 module.exports = {
-    store,index
+    store,index,show,destroy
 }
