@@ -14,12 +14,15 @@ import Categories from "./pages/Categories";
 import SingleCategory from "./pages/SingleCategory";
 import SinglePhoto from "./pages/SinglePhoto";
 
+import { GlobalProvider } from "./contexts/GlobalContext";
+
 function App() {
 
 
   return (
     <>
       <BrowserRouter>
+        <GlobalProvider>
           <Routes>
             <Route path="/" element={<DefaultLayout/>}>
                 <Route index element={<HomePage/>}/>
@@ -44,6 +47,7 @@ function App() {
                 </Route>
             </Route>
           </Routes>
+        </GlobalProvider>
       </BrowserRouter>
     </>
   )
