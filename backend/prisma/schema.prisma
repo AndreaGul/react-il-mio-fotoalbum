@@ -44,3 +44,11 @@ model User {
   createdAt DateTime @default(now())
   undatedAt DateTime @updatedAt
 }
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  email     String
+  content   String
+  createdAt DateTime @default(now())
+  undatedAt DateTime @updatedAt
+}
