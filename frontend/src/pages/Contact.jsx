@@ -21,16 +21,23 @@ export default function () {
     e.preventDefault();
     console.log('ciao'); // Aggiungi il console.log qui
     onSubmit(formData);
+    setFormData(defaultData)
   };
 
-  const onSubmit = async (data) => {
+  const onSubmit  = async (formData) => {
     try {
-      const response = await axios.post('/your-endpoint', data);
-      setResponseMessage("Messaggio inviato con successo!");
+        console.log(formData);
+
+        const res = await axios.post(`/messages`, formData);
+        console.log(res);
+        if (res.status < 400) {
+            console.log('Messaggio inviato con successo');
+        }
     } catch (error) {
-      setResponseMessage("Errore durante l'invio del messaggio.");
+        console.error('Errore nella creazione della foto:', error);
     }
-  };
+}
+
 
   return (
     <div>
@@ -43,7 +50,7 @@ export default function () {
               required
               name={objKey}
               type="text"
-              placeholder={objKey}
+              placeholder=""
               value={formData[objKey]}
               onChange={(e) => handleField(objKey, e.target.value)}
             />
