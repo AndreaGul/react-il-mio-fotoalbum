@@ -10,7 +10,7 @@ export default function FormPhoto({ initialData, onSubmit }) {
         visible: false,
         img: "",
         categories: [],
-        userId: 1
+        // userId: 1
     };
 
     const [formData, setFormData] = useState(defaultData);

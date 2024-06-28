@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormPhoto from "../components/FormPhoto";
 import axios from "../utils/axiosClient";
 
 export default function CreatePhotoPage() {
+
+    const navigate = useNavigate();
 
     const creaPhoto = async formData => {
         try {
@@ -15,7 +17,7 @@ export default function CreatePhotoPage() {
             });
             console.log(res);
             if (res.status < 400) {
-                console.log('Foto creata con successo');
+                navigate(`/photos`)
             }
         } catch (error) {
             console.error('Errore nella creazione della foto:', error);

@@ -11,7 +11,6 @@ import CreateCategory from "./pages/CreateCategory";
 import EditCategory from "./pages/EditCategory";
 import Photos from "./pages/Photos";
 import Categories from "./pages/Categories";
-import SingleCategory from "./pages/SingleCategory";
 import SinglePhoto from "./pages/SinglePhoto";
 import Contact from "./pages/Contact";
 
@@ -51,7 +50,6 @@ function App() {
                   <Route path="categories">
                     <Route index element={<Categories/>}/>
                     <Route path="create" element={<CreateCategory/>}/>
-                    <Route path=":id" element={<SingleCategory/>}/>
                     <Route path=":id/edit" element={<EditCategory/>}/>
                   </Route>
               </Route>
