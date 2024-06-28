@@ -10,8 +10,8 @@ const bodyData = {
             bail: true
         },
         isLength: {
-            errorMessage: 'Name deve essere di almeno 4 caratteri',
-            options: {min: 4}
+            errorMessage: 'Name deve essere di almeno 2 caratteri',
+            options: {min: 2}
         }
     }
 }

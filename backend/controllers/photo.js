@@ -59,12 +59,12 @@ const show= async (req,res)=>{
                         name: true
                     }
                }
-                // ,
-                // user: {
-                //     select: {
-                //         name: true
-                //     }
-                // }
+                ,
+                user: {
+                    select: {
+                        name: true
+                   }
+                }
                 
             }
         });
@@ -90,13 +90,12 @@ try{
                 select: {
                     name: true
                 }
-           },user:true
-            // ,
-            // user: {
-            //     select: {
-            //         name: true
-            //     }
-            // }
+           },
+           user: {
+               select: {
+                   name: true
+              }
+           }
             
         }
     });

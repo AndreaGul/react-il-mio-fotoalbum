@@ -36,17 +36,6 @@ const bodyData = {
     },
     toBoolean: true,
   },
-  img: {
-    custom: {
-      options: (value, { req }) => {
-        if (!req.file) {
-          throw new Error('Image file is required.');
-        }
-        // Altre validazioni personalizzate sull'immagine, se necessarie
-        return true;
-      },
-    },
-  },
   categories:{
     in:["body"],
     notEmpty:{
