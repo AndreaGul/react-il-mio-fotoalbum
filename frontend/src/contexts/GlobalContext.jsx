@@ -24,9 +24,10 @@ const GlobalProvider = ({children}) => {
 
     return (
         <GlobalContext.Provider value={{
+            fetchData,
             photos,
-            categories,
-            fetchData
+            categories
+            
         }}>
             {children}
         </GlobalContext.Provider>

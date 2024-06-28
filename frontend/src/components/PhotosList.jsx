@@ -14,6 +14,12 @@ export default function () {
         photo.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    useEffect(() => {
+        // Ogni volta che il componente si monta o photos cambia, vuoi rifetchare i dati
+        fetchData();
+    }, [fetchData]); // Dipendenza su fetchData per rifare la chiamata
+
+
     return(
         <>
             {/* Campo di ricerca */}

@@ -5,10 +5,14 @@ import { useEffect } from "react";
 
 export default function () {
     
-    const { categories,fetchData } =  useGlobal();
+    const { categories, fetchData } =  useGlobal();
     const { deleteCategory } = DeleteEl();
 
-   
+    useEffect(() => {
+        // Ogni volta che il componente si monta o catgories cambia, vuoi rifetchare i dati
+        fetchData();
+    }, [fetchData]); // Dipendenza su fetchData per rifare la chiamata
+
     return(
         
         <>
