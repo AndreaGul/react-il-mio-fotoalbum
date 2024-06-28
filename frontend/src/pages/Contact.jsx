@@ -19,47 +19,50 @@ export default function () {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('ciao'); // Aggiungi il console.log qui
-    onSubmit(formData);
-    setFormData(defaultData)
-  };
-
-  const onSubmit  = async (formData) => {
     try {
-        console.log(formData);
-
-        const res = await axios.post(`/messages`, formData);
-        console.log(res);
-        if (res.status < 400) {
-            console.log('Messaggio inviato con successo');
-        }
+      console.log('Dati del form:', formData);
+      const res = await axios.post(`/messages`, formData);
+      console.log('Risposta dal server:', res);
+      if (res.status < 400) {
+        setResponseMessage('Messaggio inviato con successo');
+      } else {
+        setResponseMessage('Si è verificato un errore nell\'invio del messaggio');
+      }
+      setFormData(defaultData); // Ripristina il form dopo l'invio
     } catch (error) {
-        console.error('Errore nella creazione della foto:', error);
+      console.error('Errore nella creazione del messaggio:', error);
+      setResponseMessage('Si è verificato un errore nella creazione del messaggio');
     }
-}
-
+  };
 
   return (
     <div>
-      <h2>Invia un Messaggio</h2>
+      <h1>Invia un Messaggio</h1>
       <form onSubmit={handleSubmit}>
-        {Object.keys(defaultData).map((objKey, index) => (
-          <label key={`formElement${index}`}>
-            {objKey}
-            <input
-              required
-              name={objKey}
-              type="text"
-              placeholder=""
-              value={formData[objKey]}
-              onChange={(e) => handleField(objKey, e.target.value)}
-            />
-          </label>
-        ))}
+        <label>
+          <div>Email</div>
+          <input
+            required
+            name='email'
+            type="email"
+            placeholder="Inserisci la tua email"
+            value={formData.email} // Correggi il valore dell'input
+            onChange={(e) => handleField("email", e.target.value)}
+          />
+        </label>
+        <label>
+          <div>Contenuto</div>
+          <textarea
+            required
+            name="content"
+            placeholder="Inserisci il contenuto del messaggio"
+            value={formData.content} // Correggi il valore dell'input
+            onChange={(e) => handleField("content", e.target.value)}
+          />
+        </label>
         <button type="submit">Invia</button>
       </form>
       {responseMessage && <p>{responseMessage}</p>}
     </div>
   );
 };
-
