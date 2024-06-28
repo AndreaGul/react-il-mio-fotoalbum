@@ -13,10 +13,12 @@ import Photos from "./pages/Photos";
 import Categories from "./pages/Categories";
 import SinglePhoto from "./pages/SinglePhoto";
 import Contact from "./pages/Contact";
+import PrivatePage from "./middlewares/PrivatePage";
+import MessageList from "./pages/MessageList";
+import NotFound from "./pages/NotFound";
 
 import { GlobalProvider } from "./contexts/GlobalContext";
 import { AuthProvider } from "./contexts/AuthContext";
-import PrivatePage from "./middlewares/PrivatePage";
 
 
 function App() {
@@ -29,6 +31,7 @@ function App() {
           <AuthProvider>
             <Routes>
               <Route path="/" element={<DefaultLayout/>}>
+                  <Route path="*" element={<NotFound/>}/>
                   <Route index element={<HomePage/>}/>
                   <Route path="contact" element={<Contact/>}/>
                   <Route path="login" element={<LogIn/>}/>
@@ -40,6 +43,8 @@ function App() {
                   <DefaultLayout/>
                 </PrivatePage>}>
                   <Route path="administration" element={<Administration/>} />
+                  <Route path='messages' element={<MessageList/>}></Route>
+
                   <Route path="photos">
                     <Route index element={<Photos/>}/>
                     <Route path="create" element={<CreatePhoto/>}/>
