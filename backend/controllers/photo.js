@@ -62,7 +62,8 @@ const show= async (req,res)=>{
                 ,
                 user: {
                     select: {
-                        name: true
+                        name: true,
+                        email:true
                    }
                 }
                 
@@ -92,10 +93,12 @@ try{
                 }
            },
            user: {
-               select: {
-                   name: true
-              }
-           }
+            select: {
+                id:true,
+                name: true,
+                email:true
+                }
+            }
             
         }
     });

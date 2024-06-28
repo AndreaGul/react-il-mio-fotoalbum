@@ -25,7 +25,7 @@ export default function CreatePhotoPage() {
     return (
         <>
             <h1>Crea Foto</h1>
-            <Link to="../">Torna indietro</Link>
+            <Link to={`/administration`}>Torna all'aerea amminstrativa</Link>
             <FormPhoto onSubmit={creaPhoto} />
         </>
     )

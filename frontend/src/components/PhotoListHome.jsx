@@ -17,8 +17,6 @@ export default function () {
                             <li>{`title:${p.title}`}</li>
                             <li>{`description:${p.description}`}</li>
                             <li><img style={{width:"200px"}} src={p.img} alt={p.title} /></li>
-                            <li><Link to={`/photos/${p.id}`}>foto singola</Link></li>
-                            <li><Link to={`/photos/${p.id}/edit`}>edita foto</Link></li>
                         </ul>
                     </li>
                 ))}

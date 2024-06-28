@@ -5,7 +5,7 @@ export default function ({children}) {
 
     const { isLoggedIn }  = useAuth();
 
-    if(!isLoggedIn) return <Navigate to="/login"/>
+    if(!isLoggedIn) return <Navigate to="/"/>
     
     return children
 }

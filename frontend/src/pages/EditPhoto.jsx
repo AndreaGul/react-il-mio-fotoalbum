@@ -1,10 +1,12 @@
 import axios from "../utils/axiosClient";
 import FormPhoto from "../components/FormPhoto"
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate,useParams } from "react-router-dom";
 
 export default function () {
     const {id} = useParams();
+
+    const navigate = useNavigate();
 
     const [dataToEdit, setDataToEdit] = useState(null);
 
@@ -39,7 +41,7 @@ export default function () {
             })
             console.log(res);
             if (res.status < 400) {
-                console.log('Foto modificata con successo');
+                navigate(`/photos/${res.data.id}`)
             } 
         }catch (error) {
             setLoginError(error)
@@ -52,7 +54,7 @@ export default function () {
     return(
         <>
         <h1>edita foto</h1>
-        <Link to="../">Torna indietro</Link>
+        <Link to={`/photos`}>torna alla lista</Link>
         <FormPhoto
             initialData={dataToEdit}
             onSubmit={updatePhoto}

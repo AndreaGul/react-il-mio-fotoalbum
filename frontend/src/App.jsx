@@ -16,6 +16,7 @@ import SinglePhoto from "./pages/SinglePhoto";
 
 import { GlobalProvider } from "./contexts/GlobalContext";
 import { AuthProvider } from "./contexts/AuthContext";
+import PrivatePage from "./middlewares/PrivatePage";
 
 function App() {
 
@@ -32,7 +33,10 @@ function App() {
                   <Route path="signup" element={<SignUp/>}/>
               </Route>
 
-              <Route path="/" element={<DefaultLayout/>}>
+              <Route path="/" element={
+                <PrivatePage>
+                  <DefaultLayout/>
+                </PrivatePage>}>
                   <Route path="administration" element={<Administration/>} />
                   <Route path="photos">
                     <Route index element={<Photos/>}/>

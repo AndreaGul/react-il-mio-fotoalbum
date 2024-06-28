@@ -23,6 +23,7 @@ export default function () {
     return(
         <>
         <h1>foto singola</h1>
+        <Link to={`/photos`}>torna alla lista</Link>
             <ul>
                             <li>{`title:${photo.title}`}</li>
                             <li>{`description:${photo.description}`}</li>
