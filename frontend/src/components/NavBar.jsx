@@ -6,10 +6,6 @@ const urlPages = [
         label: 'Home',
         href: '/'
     },
-    {
-        label: 'Administration',
-        href: '/administration'
-    },
 ];
 
 const authPages = [
@@ -20,6 +16,13 @@ const authPages = [
     {
         label: 'SignUp',
         href: '/signup'
+    },
+];
+
+const protectedPages = [
+    {
+        label: 'Administration',
+        href: '/administration'
     },
 ];
 
@@ -44,6 +47,11 @@ export default function Navbar() {
                     ))}
                     {!accessToken && authPages.map(({label, href}, i) => (
                         <li key={`authPage${i}`}>
+                            <NavLink to={href}>{label}</NavLink>
+                        </li>
+                    ))}
+                    {accessToken && protectedPages.map(({label, href}, i) => (
+                        <li key={`protectedPage${i}`}>
                             <NavLink to={href}>{label}</NavLink>
                         </li>
                     ))}
