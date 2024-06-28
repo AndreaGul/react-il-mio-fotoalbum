@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom"
 import { useGlobal } from "../contexts/GlobalContext"
+import { useEffect } from "react";
 
 export default function () {
     
     const { photos } =  useGlobal();
    
+// useEffect(
+//     ()=>{
+
+//     },[photos])
 
     return(
         
