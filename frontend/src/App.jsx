@@ -13,10 +13,12 @@ import Photos from "./pages/Photos";
 import Categories from "./pages/Categories";
 import SingleCategory from "./pages/SingleCategory";
 import SinglePhoto from "./pages/SinglePhoto";
+import Contact from "./pages/Contact";
 
 import { GlobalProvider } from "./contexts/GlobalContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import PrivatePage from "./middlewares/PrivatePage";
+
 
 function App() {
 
@@ -29,6 +31,7 @@ function App() {
             <Routes>
               <Route path="/" element={<DefaultLayout/>}>
                   <Route index element={<HomePage/>}/>
+                  <Route path="contact" element={<Contact/>}/>
                   <Route path="login" element={<LogIn/>}/>
                   <Route path="signup" element={<SignUp/>}/>
               </Route>

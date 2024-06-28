@@ -6,6 +6,11 @@ const urlPages = [
         label: 'Home',
         href: '/'
     },
+    {
+        label: 'Contact',
+        href: '/contact'
+    },
+ 
 ];
 
 const authPages = [
