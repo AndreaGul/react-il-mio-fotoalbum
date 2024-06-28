@@ -117,7 +117,7 @@ try{
 
 const update = async (req, res) => {
     const { id } = req.params;
-    const { title, description, categories} = req.body;
+    const { title, description, categories } = req.body;
 
     try {
         // Preparare i dati di aggiornamento
@@ -125,44 +125,46 @@ const update = async (req, res) => {
             title,
             description,
             visible: req.body.visible ? true : false,
-        }
-        console.log(data);
-        // Controllare se categories 
-        if (data.categories) {
+        };
+
+        // Controllare se categories è presente e aggiornarle
+        if (categories) {
             data.categories = {
-                set: categories.map(id => ({ id: parseInt(id) }))
+                set: categories.map(id => ({ id: parseInt(id) })),
             };
         }
 
+        // Controllare se è stata fornita una nuova immagine
         if (req.file) {
             data.img = `${HOST}:${port}/photo_pics/${req.file.filename}`;
-        }
-
-        try {
+            
+            // Trovare la foto esistente per eliminare l'immagine precedente
             const existingPhoto = await prisma.photo.findUnique({
-                where: { id: parseInt(id) }
-            });
-
-            if (!existingPhoto) {
-                return res.status(404).send({ message: 'Photo not found' });
-            }
-
-            const updatedPhoto = await prisma.photo.update({
                 where: { id: parseInt(id) },
-                data
             });
 
-            res.status(200).send(updatedPhoto);
-        } catch (err) {
-            if (req.file) {
-                deletePic('photo_pics', req.file.filename);
+            if (existingPhoto && existingPhoto.img) {
+                const filename = existingPhoto.img.split('/').pop(); // Ottieni il nome del file dall'URL
+                deletePic('photo_pics', filename); // Elimina l'immagine precedente
             }
-            errorHandler(err, req, res);
         }
+
+        // Effettuare l'aggiornamento della foto
+        const updatedPhoto = await prisma.photo.update({
+            where: { id: parseInt(id) },
+            data,
+        });
+
+        res.status(200).send(updatedPhoto);
     } catch (err) {
+        // Gestione degli errori
+        if (req.file) {
+            deletePic('photo_pics', req.file.filename); // Elimina l'immagine caricata in caso di errore
+        }
         errorHandler(err, req, res);
     }
-}
+};
+
 
   
 const destroy = async(req,res)=>{

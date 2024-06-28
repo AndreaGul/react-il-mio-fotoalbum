@@ -11,7 +11,6 @@ const store = async (req, res) => {
         email: email,
         content: content
     }
-console.log(data)
     try{
         const message = await prisma.message.create({data});
         res.status(200).send(message);
