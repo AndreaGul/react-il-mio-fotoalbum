@@ -15,6 +15,7 @@ import SingleCategory from "./pages/SingleCategory";
 import SinglePhoto from "./pages/SinglePhoto";
 
 import { GlobalProvider } from "./contexts/GlobalContext";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
 
@@ -23,30 +24,32 @@ function App() {
     <>
       <BrowserRouter>
         <GlobalProvider>
-          <Routes>
-            <Route path="/" element={<DefaultLayout/>}>
-                <Route index element={<HomePage/>}/>
-                <Route path="login" element={<LogIn/>}/>
-                <Route path="signup" element={<SignUp/>}/>
-            </Route>
+          <AuthProvider>
+            <Routes>
+              <Route path="/" element={<DefaultLayout/>}>
+                  <Route index element={<HomePage/>}/>
+                  <Route path="login" element={<LogIn/>}/>
+                  <Route path="signup" element={<SignUp/>}/>
+              </Route>
 
-            <Route path="/" element={<DefaultLayout/>}>
-                <Route path="administration" element={<Administration/>} />
-                <Route path="photos">
-                  <Route index element={<Photos/>}/>
-                  <Route path="create" element={<CreatePhoto/>}/>
-                  <Route path=":id" element={<SinglePhoto/>}/>
-                  <Route path=":id/edit" element={<EditPhoto/>}/>
-                </Route>
-                
-                <Route path="categories">
-                  <Route index element={<Categories/>}/>
-                  <Route path="create" element={<CreateCategory/>}/>
-                  <Route path=":id" element={<SingleCategory/>}/>
-                  <Route path=":id/edit" element={<EditCategory/>}/>
-                </Route>
-            </Route>
-          </Routes>
+              <Route path="/" element={<DefaultLayout/>}>
+                  <Route path="administration" element={<Administration/>} />
+                  <Route path="photos">
+                    <Route index element={<Photos/>}/>
+                    <Route path="create" element={<CreatePhoto/>}/>
+                    <Route path=":id" element={<SinglePhoto/>}/>
+                    <Route path=":id/edit" element={<EditPhoto/>}/>
+                  </Route>
+                  
+                  <Route path="categories">
+                    <Route index element={<Categories/>}/>
+                    <Route path="create" element={<CreateCategory/>}/>
+                    <Route path=":id" element={<SingleCategory/>}/>
+                    <Route path=":id/edit" element={<EditCategory/>}/>
+                  </Route>
+              </Route>
+            </Routes>
+          </AuthProvider>
         </GlobalProvider>
       </BrowserRouter>
     </>
