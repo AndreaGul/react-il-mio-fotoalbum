@@ -55,6 +55,7 @@ const show= async (req,res)=>{
             include: {
                 categories: {
                     select: {
+                        id:true,
                         name: true
                     }
                }
@@ -89,7 +90,7 @@ try{
                 select: {
                     name: true
                 }
-           }
+           },user:true
             // ,
             // user: {
             //     select: {

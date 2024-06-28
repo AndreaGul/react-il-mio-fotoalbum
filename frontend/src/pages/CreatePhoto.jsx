@@ -1,10 +1,32 @@
-import FormPhoto from "../components/FormPhoto"
+import { Link } from "react-router-dom";
+import FormPhoto from "../components/FormPhoto";
+import axios from "../utils/axiosClient";
 
-export default function () {
-    return(
+export default function CreatePhotoPage() {
+
+    const creaPhoto = async formData => {
+        try {
+            console.log(formData);
+
+            const res = await axios.post(`/photos`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            });
+            console.log(res);
+            if (res.status < 400) {
+                console.log('Foto creata con successo');
+            }
+        } catch (error) {
+            console.error('Errore nella creazione della foto:', error);
+        }
+    }
+
+    return (
         <>
-        <h1>crea foto</h1>
-        <FormPhoto/>
+            <h1>Crea Foto</h1>
+            <Link to="../">Torna indietro</Link>
+            <FormPhoto onSubmit={creaPhoto} />
         </>
     )
 }

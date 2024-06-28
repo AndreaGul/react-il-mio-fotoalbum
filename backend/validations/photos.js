@@ -69,7 +69,7 @@ const bodyData = {
                 where: { id: { in: idCercati.map(id => parseInt(id)) } }
             });
     
-            if (tags.length !== idCercati.length) {
+            if (categories.length !== idCercati.length) {
                 throw new Error(`Una o più categorie specificate non esistono`);
             }
     
