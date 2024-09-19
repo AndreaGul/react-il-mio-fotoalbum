@@ -1,17 +1,6 @@
+import styles from './NavBar.module.css';
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-
-const urlPages = [
-    {
-        label: 'Home',
-        href: '/'
-    },
-    {
-        label: 'Contact',
-        href: '/contact'
-    },
- 
-];
 
 const authPages = [
     {
@@ -19,8 +8,8 @@ const authPages = [
         href: '/login'
     },
     {
-        label: 'SignUp',
-        href: '/signup'
+        label: 'Register',
+        href: '/register'
     },
 ];
 
@@ -42,29 +31,32 @@ export default function Navbar() {
     };
 
     return (
-        <header>
-            <nav>
-                <menu>
-                    {urlPages.map(({label, href}, i) => (
-                        <li key={`urlPage${i}`}>
-                            <NavLink to={href}>{label}</NavLink>
+        <header className={`${styles.header}`}>
+            <nav className="container">
+                <menu className={`${styles.container} d-flex justify-content-between align-items-center`}>
+                    <h2 className={styles.home}>
+                        <NavLink to='/'>Home</NavLink>
+                    </h2>
+                    <ul className={`${styles.ul} d-flex m-0 p-0`}>
+                        <li className={`${styles.li}`}>
+                            <NavLink to='/contact'>Contact</NavLink>
                         </li>
-                    ))}
                     {!accessToken && authPages.map(({label, href}, i) => (
-                        <li key={`authPage${i}`}>
+                        <li className={`${styles.li}`} key={`authPage${i}`} >
                             <NavLink to={href}>{label}</NavLink>
                         </li>
                     ))}
                     {accessToken && protectedPages.map(({label, href}, i) => (
-                        <li key={`protectedPage${i}`}>
+                        <li className={`${styles.li}`} key={`protectedPage${i}`}>
                             <NavLink to={href}>{label}</NavLink>
                         </li>
                     ))}
                     {accessToken && (
-                        <li>
+                        <li className={`${styles.li}`} >
                             <button onClick={handleLogout}>Logout</button>
                         </li>
                     )}
+                    </ul>
                 </menu>
             </nav>
         </header>

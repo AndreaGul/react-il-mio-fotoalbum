@@ -25,43 +25,46 @@ function App() {
 
 
   return (
-    <>
-      <BrowserRouter>
-        <GlobalProvider>
-          <AuthProvider>
-            <Routes>
-              <Route path="/" element={<DefaultLayout/>}>
-                  <Route path="*" element={<NotFound/>}/>
-                  <Route index element={<HomePage/>}/>
-                  <Route path="contact" element={<Contact/>}/>
-                  <Route path="login" element={<LogIn/>}/>
-                  <Route path="signup" element={<SignUp/>}/>
-              </Route>
+    <> 
+      <div>
+        <BrowserRouter>
+          <GlobalProvider>
+            <AuthProvider>
+              <Routes>
+                <Route path="/" element={<DefaultLayout/>}>
+                    <Route path="*" element={<NotFound/>}/>
+                    <Route index element={<HomePage/>}/>
+                    <Route path="contact" element={<Contact/>}/>
+                    <Route path="login" element={<LogIn/>}/>
+                    <Route path="signup" element={<SignUp/>}/>
+                </Route>
 
-              <Route path="/" element={
-                <PrivatePage>
-                  <DefaultLayout/>
-                </PrivatePage>}>
-                  <Route path="administration" element={<Administration/>} />
-                  <Route path='messages' element={<MessageList/>}></Route>
+                <Route path="/" element={
+                  <PrivatePage>
+                    <DefaultLayout/>
+                  </PrivatePage>}>
+                    <Route path="administration" element={<Administration/>} />
+                    <Route path='messages' element={<MessageList/>}></Route>
 
-                  <Route path="photos">
-                    <Route index element={<Photos/>}/>
-                    <Route path="create" element={<CreatePhoto/>}/>
-                    <Route path=":id" element={<SinglePhoto/>}/>
-                    <Route path=":id/edit" element={<EditPhoto/>}/>
-                  </Route>
-                  
-                  <Route path="categories">
-                    <Route index element={<Categories/>}/>
-                    <Route path="create" element={<CreateCategory/>}/>
-                    <Route path=":id/edit" element={<EditCategory/>}/>
-                  </Route>
-              </Route>
-            </Routes>
-          </AuthProvider>
-        </GlobalProvider>
-      </BrowserRouter>
+                    <Route path="photos">
+                      <Route index element={<Photos/>}/>
+                      <Route path="create" element={<CreatePhoto/>}/>
+                      <Route path=":id" element={<SinglePhoto/>}/>
+                      <Route path=":id/edit" element={<EditPhoto/>}/>
+                    </Route>
+                    
+                    <Route path="categories">
+                      <Route index element={<Categories/>}/>
+                      <Route path="create" element={<CreateCategory/>}/>
+                      <Route path=":id/edit" element={<EditCategory/>}/>
+                    </Route>
+                </Route>
+              </Routes>
+            </AuthProvider>
+          </GlobalProvider>
+        </BrowserRouter>
+      </div>
+     
     </>
   )
 }

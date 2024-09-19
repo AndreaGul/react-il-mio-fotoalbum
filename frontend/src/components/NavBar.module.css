@@ -1,0 +1,38 @@
+.header{
+    background-color: var(--ag-background--blue);
+    
+
+}
+.container{
+    padding: 16px 0;
+    background-color: var(--ag-background--blue );
+    
+}
+
+.home a{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.ul{
+    font-size: 20px;
+    list-style: none;
+}
+
+.li a{
+    font-weight: 600;
+}
+
+.li button{
+    all: unset;
+    font-weight: 600;
+}
+
+.container a,
+.container button{
+    text-decoration: none;
+    color: var(--ag-text-color-white);
+    font-family: "Poppins", system-ui;
+    margin: 0 10px;
+}
+

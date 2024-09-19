@@ -56,9 +56,7 @@ export default function () {
           onChange={(e) => changeData('name', e.target.value)}
         />
 
-        {signupError !== null && (
-          <div className="error">{signupError.message}</div>
-        )}
+        
         {signupError?.errors &&
           signupError.errors.map((err, index) => (
             <div key={`err${index}`}>{err.msg}</div>
